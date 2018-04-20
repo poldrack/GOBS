@@ -27,7 +27,7 @@ sub-EO2055_task-rest_run-1_bold.nii.gz
 
 """
 
-import os,glob,shutil
+import sys,os,glob,shutil
 import json
 import subprocess
 
@@ -44,11 +44,11 @@ def run_shell_cmd(cmd,cwd=[]):
              stdout_holder.append(line.strip())
     process.wait()
     return stdout_holder
-
-niidir='/Users/poldrack/data_unsynced/GOBS/GOBS_nii'
-bidsdir='/Users/poldrack/data_unsynced/GOBS/GOBS_bids'
-
-subcode='sub-EO2055'
+basedir='/scratch/01329/poldrack/GOBS/'
+niidir=os.path.join(basedir,'GOBS_nii')
+bidsdir=os.path.join(basedir,'GOBS_bids')
+assert len(sys.argv)>1
+subcode=sys.argv[1] #'sub-EO2055'
 
 subdir=os.path.join(niidir,subcode)
 
@@ -64,7 +64,7 @@ assert len(niifiles)>0
 filetype_dict={'field_mapping':'fmap',
             'FLAIR':'anat',
             'MPRAGE':'anat',
-            'ep2d_bold':'func',
+            'MoCoSeries_ep2d_bold__':'func',
             'high_res_dti_high_res_dti':'dwi'}
 filetype={}
 files_by_type={}
