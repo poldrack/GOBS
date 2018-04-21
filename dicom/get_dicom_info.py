@@ -8,7 +8,7 @@ import pickle
 
 
 basedir='/Users/poldrack/data_unsynced/GOBS/GOBS_dicom'
-
+basedir='/scratch/01329/poldrack/GOBS/GOBS_dicom'
 dcmdirs=glob.glob(os.path.join(basedir,'*'))
 
 dcminfo={}
@@ -17,7 +17,7 @@ for d in dcmdirs:
     dcminfo[d]={}
     scans=glob.glob(os.path.join(d,'SCANS/*'))
     for s in scans:
-        scannum=int(os.path.basename(s))
+        scannum=os.path.basename(s)
         dcmfiles=glob.glob(os.path.join(s,'DICOM/*_*.dcm'))
         if len(dcmfiles)==0:
             dcminfo[d][scannum]=(None,0)
