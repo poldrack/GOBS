@@ -3,8 +3,8 @@
 import os,sys
 import pandas
 
-#subcode=sys.argv[1].replace('sub-','')
-subcode='EJ0093'
+subcode=sys.argv[1].replace('sub-','')
+#subcode='EJ0093'
 
 basedir='/scratch/01329/poldrack/GOBS/GOBS_bids/derivatives/fmriprep'
 funcdir=os.path.join(basedir,'sub-%s/func'%subcode)
